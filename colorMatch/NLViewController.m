@@ -10,7 +10,10 @@
 
 @interface NLViewController ()
 {
-    
+    UIColor *colorToSave;
+    UInt8 red;
+    UInt8 green;
+    UInt8 blue;
 }
 
 @end
@@ -43,6 +46,10 @@
     
     //add the button to the nav bar
     [[self navigationItem] setRightBarButtonItem:cameraBarButtonItem];
+    
+    //testimage for funsies
+    UIImage *testImage = [UIImage imageNamed:@"colorWheel2.png"];
+    [testImageView setImage:testImage];
 }
 
 #pragma mark -
@@ -86,5 +93,60 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark -
+#pragma mark getPixelColor
+//grabs pixel at a uitouch cgpoint
+
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //make a touch
+    UITouch *touch = [[touches allObjects] objectAtIndex:0];
+    //make a cgpoint out of a touch
+    CGPoint point1 = [touch locationInView:self.view];
+    //get a color from a pixel
+    colorToSave = [self getPixelColorAtLocation:point1];
+
+    //set backgorund color of tiny view to pixel color
+    viewToChangeColor.backgroundColor = colorToSave;
+}
+
+-(UIColor *) getPixelColorAtLocation: (CGPoint)point
+{
+    //set color no nothing for now
+    UIColor * color = nil;
+    
+    //make a cgimageref out of your image
+    CGImageRef inImage = testImageView.image.CGImage;
+    
+    size_t width = CGImageGetWidth(inImage);
+    size_t height = CGImageGetHeight(inImage);
+    NSUInteger x = (((NSUInteger)floor(point.x)) - 30);
+    NSUInteger y = (((NSUInteger)floor(point.y)) - 25);
+    NSUInteger test = height - y;
+    
+    if ((x < width) && (test < height))
+    {
+        CGDataProviderRef provider = CGImageGetDataProvider(inImage);
+    	CFDataRef bitmapData = CGDataProviderCopyData(provider);
+    	const UInt8* data = CFDataGetBytePtr(bitmapData);
+    	size_t offset = ((width * y) + x) * 4;
+        if (TARGET_IPHONE_SIMULATOR)
+        {
+            red = data[offset];
+            green = data[offset + 1];
+            blue =  data[offset + 2];
+        } else {
+            //on device, notice red and blue are swapped because apple does byte swpaping on device and not on simulator, learing like a boss
+            blue =  data[offset];       
+            green = data[offset + 1];
+            red =   data[offset + 2];
+        }
+    	UInt8 alpha = data[offset+3];
+    	//CFRelease(bitmapData);
+    	color = [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:alpha/255.0f];
+        NSLog(@"red is:%f green is:%f blue is %f", red/255.0f, green/255.0f, blue/255.0f);
+    }
+    return color;
+}
 
 @end

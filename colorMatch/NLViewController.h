@@ -11,6 +11,8 @@
 @interface NLViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     __weak IBOutlet UIImageView *imageViewForPic;    
+    __weak IBOutlet UIImageView *testImageView;
+    __weak IBOutlet UIView *viewToChangeColor;
 }
 
 - (void)setupAppearance;

@@ -18,6 +18,7 @@
 		D8AB61DC17330476001FE4F5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AB61DB17330476001FE4F5 /* Default-568h@2x.png */; };
 		D8AB61DF17330476001FE4F5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8AB61DD17330476001FE4F5 /* MainStoryboard.storyboard */; };
 		D8AB61E217330476001FE4F5 /* NLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AB61E117330476001FE4F5 /* NLViewController.m */; };
+		D8AB61EF173438A3001FE4F5 /* colorWheel2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AB61EE173438A3001FE4F5 /* colorWheel2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		D8AB61DE17330476001FE4F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		D8AB61E017330476001FE4F5 /* NLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLViewController.h; sourceTree = "<group>"; };
 		D8AB61E117330476001FE4F5 /* NLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLViewController.m; sourceTree = "<group>"; };
+		D8AB61EE173438A3001FE4F5 /* colorWheel2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = colorWheel2.png; path = ../colorWheel2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		D8AB61CC17330476001FE4F5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D8AB61EE173438A3001FE4F5 /* colorWheel2.png */,
 				D8AB61CD17330476001FE4F5 /* colorMatch-Info.plist */,
 				D8AB61CE17330476001FE4F5 /* InfoPlist.strings */,
 				D8AB61D117330476001FE4F5 /* main.m */,
@@ -164,6 +167,7 @@
 				D8AB61DA17330476001FE4F5 /* Default@2x.png in Resources */,
 				D8AB61DC17330476001FE4F5 /* Default-568h@2x.png in Resources */,
 				D8AB61DF17330476001FE4F5 /* MainStoryboard.storyboard in Resources */,
+				D8AB61EF173438A3001FE4F5 /* colorWheel2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +303,7 @@
 				D8AB61E717330476001FE4F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

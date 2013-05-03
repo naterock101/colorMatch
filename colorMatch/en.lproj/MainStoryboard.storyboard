@@ -18,16 +18,34 @@
                                     <constraint firstAttribute="width" constant="121" id="lpx-Yo-r8G"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQu-b1-ori">
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="Agy-GD-xON"/>
+                                    <constraint firstAttribute="width" constant="150" id="f2S-RD-J8H"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zV-aD-GMy">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xZJ-8E-Zl2" firstAttribute="top" secondItem="3" secondAttribute="top" constant="25" id="W9m-Ku-yia"/>
-                            <constraint firstItem="xZJ-8E-Zl2" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="gLA-MG-4p9"/>
+                            <constraint firstItem="bQu-b1-ori" firstAttribute="top" secondItem="3" secondAttribute="top" constant="25" id="5Nm-wY-9iq"/>
+                            <constraint firstItem="bQu-b1-ori" firstAttribute="leading" secondItem="6zV-aD-GMy" secondAttribute="leading" type="default" id="RAq-zK-7Vi"/>
+                            <constraint firstItem="6zV-aD-GMy" firstAttribute="top" secondItem="3" secondAttribute="top" constant="173" id="ZE0-de-wqg"/>
+                            <constraint firstAttribute="trailing" secondItem="xZJ-8E-Zl2" secondAttribute="trailing" constant="29" id="gNC-bB-MSC"/>
+                            <constraint firstAttribute="trailing" secondItem="6zV-aD-GMy" secondAttribute="trailing" constant="242" id="ghr-qU-bOr"/>
+                            <constraint firstItem="bQu-b1-ori" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="30" id="gpL-tF-ZxX"/>
+                            <constraint firstAttribute="bottom" secondItem="xZJ-8E-Zl2" secondAttribute="bottom" constant="38" id="h1g-OH-aF5"/>
+                            <constraint firstAttribute="bottom" secondItem="6zV-aD-GMy" secondAttribute="bottom" constant="279" id="o9l-AA-TO7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Snk-bL-Ams"/>
                     <connections>
                         <outlet property="imageViewForPic" destination="xZJ-8E-Zl2" id="iOn-iR-xvZ"/>
+                        <outlet property="testImageView" destination="bQu-b1-ori" id="XdH-BV-JUe"/>
+                        <outlet property="viewToChangeColor" destination="6zV-aD-GMy" id="Squ-4i-LBb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -58,6 +76,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NLViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="imageViewForPic" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="testImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="viewToChangeColor" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
