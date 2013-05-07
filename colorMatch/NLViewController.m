@@ -7,6 +7,7 @@
 //
 
 #import "NLViewController.h"
+#import "NLManipulateColorViewController.h"
 
 @interface NLViewController ()
 {
@@ -14,12 +15,15 @@
     UInt8 red;
     UInt8 green;
     UInt8 blue;
+    
+    //nlmanipulatecolorVC
+    NLManipulateColorViewController *manipulateVC;
 }
 
 @end
 
 @implementation NLViewController
-
+@synthesize colorThatWasManipulated;
 
 #pragma mark -
 #pragma mark Initial methods
@@ -31,6 +35,13 @@
     
     //call the method that sets up the initial appearance
     [self setupAppearance];
+    
+    //add manipulated color
+    if (colorThatWasManipulated)
+    {
+        viewToPutManipulatedColorIn.backgroundColor = colorThatWasManipulated;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,8 +129,11 @@
     //make a cgimageref out of your image
     CGImageRef inImage = testImageView.image.CGImage;
     
+    //gets height and width of image
     size_t width = CGImageGetWidth(inImage);
     size_t height = CGImageGetHeight(inImage);
+    
+    //determines the x and y of the cgpoing based on the image
     NSUInteger x = (((NSUInteger)floor(point.x)) - 30);
     NSUInteger y = (((NSUInteger)floor(point.y)) - 25);
     NSUInteger test = height - y;
@@ -130,6 +144,8 @@
     	CFDataRef bitmapData = CGDataProviderCopyData(provider);
     	const UInt8* data = CFDataGetBytePtr(bitmapData);
     	size_t offset = ((width * y) + x) * 4;
+        
+        //rgb values work differnt on device and simulator so for testing have this out
         if (TARGET_IPHONE_SIMULATOR)
         {
             red = data[offset];
@@ -144,9 +160,24 @@
     	UInt8 alpha = data[offset+3];
     	//CFRelease(bitmapData);
     	color = [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:alpha/255.0f];
-        NSLog(@"red is:%f green is:%f blue is %f", red/255.0f, green/255.0f, blue/255.0f);
+        NSLog(@"red is:%f green is:%f blue is %f", ((red/255.0f)*255), ((green/255.0f)*255), ((blue/255.0f)*255));
     }
     return color;
 }
 
+#pragma mark Manipulate Button Stuff
+
+- (IBAction)manipulateButton:(UIButton *)sender
+{
+    
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"manipulateColorSeg"])
+    {
+        manipulateVC = segue.destinationViewController;
+        manipulateVC.colorToManipulate = colorToSave;
+    }
+}
 @end

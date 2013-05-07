@@ -12,8 +12,13 @@
 {
     __weak IBOutlet UIImageView *imageViewForPic;    
     __weak IBOutlet UIImageView *testImageView;
+    __weak IBOutlet UIView *viewToPutManipulatedColorIn;
     __weak IBOutlet UIView *viewToChangeColor;
 }
+
+@property (nonatomic, strong) UIColor *colorThatWasManipulated;
+
+- (IBAction)manipulateButton:(UIButton *)sender;
 
 - (void)setupAppearance;
 - (void)takePicture:(id) sender;
