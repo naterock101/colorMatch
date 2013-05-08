@@ -10,6 +10,11 @@
 #import "RSColorPickerView.h"
 #import "RSBrightnessSlider.h"
 
+@protocol DestinationViewControllerDelegate <NSObject>
+
+- (void)addColorToView:(UIColor *)color;
+
+@end
 @interface NLManipulateColorViewController : UIViewController <RSColorPickerViewDelegate>
 {
     NSString * savePath;
@@ -17,8 +22,9 @@
 }
 - (IBAction)chooseColorBtn:(id)sender;
 
-@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, weak) id <DestinationViewControllerDelegate> delegate;
 
+@property (nonatomic, strong) UIWindow *window;
 @property (nonatomic) RSColorPickerView *colorPicker;
 @property (nonatomic) RSBrightnessSlider *brightnessSlider;
 @property (nonatomic) UIView *colorPatch;
@@ -28,3 +34,5 @@
 
 
 @end
+
+

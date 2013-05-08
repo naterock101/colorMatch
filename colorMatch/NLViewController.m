@@ -7,7 +7,6 @@
 //
 
 #import "NLViewController.h"
-#import "NLManipulateColorViewController.h"
 
 @interface NLViewController ()
 {
@@ -35,13 +34,6 @@
     
     //call the method that sets up the initial appearance
     [self setupAppearance];
-    
-    //add manipulated color
-    if (colorThatWasManipulated)
-    {
-        viewToPutManipulatedColorIn.backgroundColor = colorThatWasManipulated;
-    }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,7 +55,6 @@
     [testImageView setImage:testImage];
 }
 
-#pragma mark -
 #pragma mark Camera methods
 //camera stuff
 
@@ -104,7 +95,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark -
 #pragma mark getPixelColor
 //grabs pixel at a uitouch cgpoint
 
@@ -169,7 +159,7 @@
 
 - (IBAction)manipulateButton:(UIButton *)sender
 {
-    
+    //goes to segue
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -178,6 +168,15 @@
     {
         manipulateVC = segue.destinationViewController;
         manipulateVC.colorToManipulate = colorToSave;
+        manipulateVC.delegate = self;
     }
 }
+
+#pragma mark Delegate stuff
+
+- (void)addColorToView:(UIColor *)color
+{
+    viewToPutManipulatedColorIn.backgroundColor = color;
+}
+
 @end

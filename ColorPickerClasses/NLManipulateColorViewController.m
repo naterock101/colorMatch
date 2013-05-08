@@ -12,12 +12,13 @@
 @interface NLManipulateColorViewController ()
 {
     NLViewController *nlVC;
+    UIViewController *viewController;
 }
 
 @end
 
 @implementation NLManipulateColorViewController
-@synthesize colorToManipulate;
+@synthesize colorToManipulate, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,9 +33,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+
     // Do any additional setup after loading the view, typically from a nib.
-    UIViewController *viewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];
+    viewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];
     
     _colorPicker = [[RSColorPickerView alloc] initWithFrame:CGRectMake(10.0, 20.0, 300.0, 300.0)];
     [_colorPicker setCropToCircle:YES]; // Defaults to YES (and you can set BG color)
@@ -49,6 +50,7 @@
     [circleSwitch setOn:_colorPicker.cropToCircle];
 	[circleSwitch addTarget:self action:@selector(circleSwitchAction:) forControlEvents:UIControlEventValueChanged];
 	[viewController.view addSubview:circleSwitch];
+    circleSwitch.hidden = YES;
     
     // View that controls brightness
 	_brightnessSlider = [[RSBrightnessSlider alloc] initWithFrame:CGRectMake(CGRectGetMaxX(circleSwitch.frame) + 4, 340.0, 320 - (20 + CGRectGetWidth(circleSwitch.frame)), 30.0)];
@@ -79,16 +81,6 @@
     _brightnessSlider.value = [cp brightness];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"backToVC"])
-    {
-        nlVC = segue.destinationViewController;
-        nlVC.colorThatWasManipulated = _colorPatch.backgroundColor;
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -97,6 +89,11 @@
 
 - (IBAction)chooseColorBtn:(id)sender
 {
-    //[self dismissViewControllerAnimated:YES completion:nil];
+    //hides the view(window) that has all the manipulation stuff
+    self.window.hidden = YES;
+    //goes back to parent VC
+    [self dismissViewControllerAnimated:YES completion:nil];
+    //metthod from delegate that sends ver manipulated color
+    [self.delegate addColorToView:_colorPatch.backgroundColor];
 }
 @end

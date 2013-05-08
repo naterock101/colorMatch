@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NLManipulateColorViewController.h"
 
-@interface NLViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface NLViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, DestinationViewControllerDelegate>
 {
     __weak IBOutlet UIImageView *imageViewForPic;    
     __weak IBOutlet UIImageView *testImageView;
