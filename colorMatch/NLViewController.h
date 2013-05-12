@@ -12,10 +12,12 @@
 
 @interface NLViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, DestinationViewControllerDelegate>
 {
+    __weak IBOutlet UILabel *nailPolishNameLabel;
     __weak IBOutlet UIImageView *imageViewForPic;    
     __weak IBOutlet UIImageView *testImageView;
     __weak IBOutlet UIView *viewToPutManipulatedColorIn;
     __weak IBOutlet UIView *viewToChangeColor;
+    __weak IBOutlet UIView *viewForClosestPolishColor;
 }
 
 @property (nonatomic, strong) UIColor *colorThatWasManipulated;

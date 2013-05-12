@@ -50,9 +50,20 @@
     arrayOfPolishes = [[NSMutableArray alloc]init];
     
     //get some dummy polishes to test.
-    NLNailPolish *meetMeAtSunset =[[NLNailPolish alloc]initWithLabValuesL:53 A:67 B:65];
+    NLNailPolish *meetMeAtSunset =[[NLNailPolish alloc]initWithLabValuesL:53 A:67 B:65 andName:@"Meet Me At Sunset"];
     [arrayOfPolishes addObject:meetMeAtSunset];
+    NLNailPolish *shesPampered =[[NLNailPolish alloc]initWithLabValuesL:43 A:65 B:36 andName:@"She's Pampered"];
+    [arrayOfPolishes addObject:shesPampered];
+    NLNailPolish *garnet =[[NLNailPolish alloc]initWithLabValuesL:44 A:64 B:43 andName:@"Garnet"];
+    [arrayOfPolishes addObject:garnet];
+    NLNailPolish *bungleJungle =[[NLNailPolish alloc]initWithLabValuesL:46 A:66 B:69 andName:@"Bungle Jungle"];
+    [arrayOfPolishes addObject:bungleJungle];
+    NLNailPolish *jellyApple =[[NLNailPolish alloc]initWithLabValuesL:52 A:73 B:64 andName:@"Jelly Apple"];
+    [arrayOfPolishes addObject:jellyApple];
     
+    //hide label
+    nailPolishNameLabel.hidden = YES;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -297,9 +308,21 @@
 
 #pragma mark CIE1994 comparison
 
--(void)compareUsingCIE1994withL:(float)l A:(float)a B:(float)b
+-(float)compareUsingCIE1994WithLab1l:(int)lab1l andLab1a:(int)lab1a andLab1b:(int)lab1b andLab2l:(int)lab2l andLab2a:(int)lab2a andLab2b:(int)lab2b
 {
+    float c1 = sqrt((lab1a*lab1a)+(lab1b*lab1b));
+    float c2 = sqrt((lab2a*lab2a)+(lab2b*lab2b));
+    float deltaC = c1 - c2;
+    float deltaL = lab1l -  lab2l;
+    float deltaA = lab1a -  lab2a;
+    float deltaB = lab1b -  lab2b;
+    float deltaH = sqrt((deltaA*deltaA)+(deltaB*deltaB)-(deltaC*deltaC));
+    //float first = deltaL;
+    float second = deltaC / (1+(0.045*c1));
+    float third = deltaH / (1+(0.015*c1));
+    float deltaE = sqrt((deltaL*deltaL)+(second*second)+(third*third));
     
+    return deltaE;
 }
 
 #pragma mark Button Stuff
@@ -322,10 +345,35 @@
     NSNumber *bnumber = [labValuesArray objectAtIndex:2];
     int bValue = [bnumber intValue];
     
-    NSLog(@"lab values are l:%i a:%i b:%d", lValue, aValue, bValue);
-    //get the lab values to compare with
+    float smallestDelta = 0;
+    NLNailPolish *polishToReturn = [[NLNailPolish alloc]init];
     
-    //perform a comparison using the cie1994 formula
+    for (NLNailPolish *polish in arrayOfPolishes)
+    {
+        //do the comparison using CIE1994 formula
+        float deltaEcomp = [self compareUsingCIE1994WithLab1l:lValue andLab1a:aValue andLab1b:bValue andLab2l:polish.labL andLab2a:polish.labA andLab2b:polish.labB];
+        
+        //find the closest match
+        if (smallestDelta == 0)
+        {
+            smallestDelta = deltaEcomp;
+            polishToReturn = polish;
+        }
+        else
+        {
+            if (deltaEcomp > smallestDelta)
+            {
+                smallestDelta = deltaEcomp;
+                polishToReturn = polish;
+            }
+        }
+    }
+
+    //now return the closest match colors to the screen.
+    
+    //unhide label and name it
+    nailPolishNameLabel.text = polishToReturn.name;
+    nailPolishNameLabel.hidden = NO;
     
 }
 

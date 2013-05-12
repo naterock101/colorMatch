@@ -74,13 +74,27 @@
                                     <action selector="compareTwoBtn:" destination="2" eventType="touchUpInside" id="vOO-R1-BZG"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" id="aeW-6M-ptv">
+                                <rect key="frame" x="20" y="309" width="96" height="98"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vRA-zm-Ega">
+                                <rect key="frame" x="20" y="280" width="175" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Snk-bL-Ams"/>
                     <connections>
                         <outlet property="imageViewForPic" destination="xZJ-8E-Zl2" id="iOn-iR-xvZ"/>
+                        <outlet property="nailPolishNameLabel" destination="vRA-zm-Ega" id="n4H-gk-GNE"/>
                         <outlet property="testImageView" destination="bQu-b1-ori" id="XdH-BV-JUe"/>
+                        <outlet property="viewForClosestPolishColor" destination="aeW-6M-ptv" id="vo7-sV-1bk"/>
                         <outlet property="viewToChangeColor" destination="6zV-aD-GMy" id="Squ-4i-LBb"/>
                         <outlet property="viewToPutManipulatedColorIn" destination="QKN-6H-H4E" id="yJI-V2-iEs"/>
                     </connections>
@@ -142,6 +156,29 @@
             <point key="canvasLocation" x="225" y="8"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="NLManipulateColorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NLManipulateColorViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="chooseColorBtn:"/>
+                <relationship kind="outlet" name="btn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NLViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NLViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="compareOneBtn:" candidateClass="UIButton"/>
+                <relationship kind="action" name="compareTwoBtn:" candidateClass="UIButton"/>
+                <relationship kind="action" name="manipulateButton:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageViewForPic" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nailPolishNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="testImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="viewForClosestPolishColor" candidateClass="UIView"/>
+                <relationship kind="outlet" name="viewToChangeColor" candidateClass="UIView"/>
+                <relationship kind="outlet" name="viewToPutManipulatedColorIn" candidateClass="UIView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
