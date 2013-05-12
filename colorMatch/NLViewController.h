@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NLManipulateColorViewController.h"
 #import "NLNailPolish.h"
+#import "NLPolishInfoViewController.h"
 
 @interface NLViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, DestinationViewControllerDelegate>
 {
@@ -22,6 +23,7 @@
 
 @property (nonatomic, strong) UIColor *colorThatWasManipulated;
 
+- (IBAction)polishInfoBtn:(id)sender;
 - (IBAction)manipulateButton:(UIButton *)sender;
 - (IBAction)compareOneBtn:(UIButton *)sender;
 - (IBAction)compareTwoBtn:(UIButton *)sender;

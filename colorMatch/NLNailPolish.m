@@ -9,9 +9,9 @@
 #import "NLNailPolish.h"
 
 @implementation NLNailPolish
-@synthesize company, name, labA, labB, labL;
+@synthesize company, name, labA, labB, labL, red, green, blue;
 
-- (id)initWithLabValuesL:(int)labl A:(int)laba B:(int)labb andName: (NSString *)name2
+- (id)initWithLabValuesL:(int)labl A:(int)laba B:(int)labb andName: (NSString *)name2 andRed: (int)red2 andGreen: (int)green2 andBlue: (int)blue2
 {    
     self = [super init];
     if (self) {
@@ -19,6 +19,9 @@
         self.labA = laba;
         self.labB = labb;
         self.name = name2;
+        self.red = red2;
+        self.green = green2;
+        self.blue = blue2;
     }
     return self;
 }

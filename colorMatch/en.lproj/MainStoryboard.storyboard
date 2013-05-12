@@ -75,7 +75,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="aeW-6M-ptv">
-                                <rect key="frame" x="20" y="309" width="96" height="98"/>
+                                <rect key="frame" x="20" y="335" width="96" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -86,6 +86,22 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YN0-DI-LsA">
+                                <rect key="frame" x="20" y="454" width="114" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                <state key="normal" title="polish Info">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="polishInfoBtn:" destination="2" eventType="touchUpInside" id="VXM-OL-faT"/>
+                                    <segue destination="5Nc-nD-hz4" kind="push" identifier="mainToInfo" id="uNN-5J-P0B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -102,6 +118,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="639" y="8"/>
+        </scene>
+        <!--Polish Info View Controller-->
+        <scene sceneID="sDC-Dn-In4">
+            <objects>
+                <viewController id="5Nc-nD-hz4" customClass="NLPolishInfoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g5n-3N-jA3">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="MGc-wy-dZO">
+                                <rect key="frame" x="62" y="53" width="174" height="150"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Bhm-4K-405"/>
+                    <connections>
+                        <outlet property="viewForPolishColor" destination="MGc-wy-dZO" id="23m-CN-Ii8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KbW-SG-Rlw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="665"/>
         </scene>
         <!--Manipulate Color View Controller-->
         <scene sceneID="Sml-dA-baX">
@@ -156,29 +197,6 @@
             <point key="canvasLocation" x="225" y="8"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NLManipulateColorViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NLManipulateColorViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="chooseColorBtn:"/>
-                <relationship kind="outlet" name="btn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="NLViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NLViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="compareOneBtn:" candidateClass="UIButton"/>
-                <relationship kind="action" name="compareTwoBtn:" candidateClass="UIButton"/>
-                <relationship kind="action" name="manipulateButton:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imageViewForPic" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nailPolishNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="testImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="viewForClosestPolishColor" candidateClass="UIView"/>
-                <relationship kind="outlet" name="viewToChangeColor" candidateClass="UIView"/>
-                <relationship kind="outlet" name="viewToPutManipulatedColorIn" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

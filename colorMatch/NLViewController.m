@@ -28,6 +28,12 @@
     
     //nlmanipulatecolorVC
     NLManipulateColorViewController *manipulateVC;
+    
+    //nlpolishinfoVC
+    NLPolishInfoViewController *polishInfoVC;
+    
+    //se up a variable for your matched polish
+    NLNailPolish *polishMatched;
 }
 
 @end
@@ -50,20 +56,19 @@
     arrayOfPolishes = [[NSMutableArray alloc]init];
     
     //get some dummy polishes to test.
-    NLNailPolish *meetMeAtSunset =[[NLNailPolish alloc]initWithLabValuesL:53 A:67 B:65 andName:@"Meet Me At Sunset"];
+    NLNailPolish *meetMeAtSunset =[[NLNailPolish alloc]initWithLabValuesL:53 A:67 B:65 andName:@"Meet Me At Sunset" andRed:240 andGreen:54 andBlue:39];
     [arrayOfPolishes addObject:meetMeAtSunset];
-    NLNailPolish *shesPampered =[[NLNailPolish alloc]initWithLabValuesL:43 A:65 B:36 andName:@"She's Pampered"];
+    NLNailPolish *shesPampered =[[NLNailPolish alloc]initWithLabValuesL:43 A:65 B:36 andName:@"She's Pampered" andRed:202 andGreen:10 andBlue:50];
     [arrayOfPolishes addObject:shesPampered];
-    NLNailPolish *garnet =[[NLNailPolish alloc]initWithLabValuesL:44 A:64 B:43 andName:@"Garnet"];
+    NLNailPolish *garnet =[[NLNailPolish alloc]initWithLabValuesL:44 A:64 B:43 andName:@"Garnet" andRed:205 andGreen:47 andBlue:43];
     [arrayOfPolishes addObject:garnet];
-    NLNailPolish *bungleJungle =[[NLNailPolish alloc]initWithLabValuesL:46 A:66 B:69 andName:@"Bungle Jungle"];
+    NLNailPolish *bungleJungle =[[NLNailPolish alloc]initWithLabValuesL:46 A:66 B:69 andName:@"Bungle Jungle" andRed:217 andGreen:27 andBlue:2];
     [arrayOfPolishes addObject:bungleJungle];
-    NLNailPolish *jellyApple =[[NLNailPolish alloc]initWithLabValuesL:52 A:73 B:64 andName:@"Jelly Apple"];
+    NLNailPolish *jellyApple =[[NLNailPolish alloc]initWithLabValuesL:52 A:73 B:64 andName:@"Jelly Apple" andRed:244 andGreen:30 andBlue:27];
     [arrayOfPolishes addObject:jellyApple];
     
     //hide label
     nailPolishNameLabel.hidden = YES;
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -376,20 +381,26 @@
     //goes to segue
 }
 
+- (IBAction)polishInfoBtn:(id)sender
+{
+    
+}
+
 - (IBAction)compareOneBtn:(UIButton *)sender
 {
     //get the color that was chosen
     UIColor *color = viewToChangeColor.backgroundColor;
     
     //run the comparison
-    NLNailPolish *polishMatched = [self compareColor:color];
-    
-    //now return the closest match colors to the screen.
+    polishMatched = [self compareColor:color];
     
     //unhide label and name it
     nailPolishNameLabel.text = polishMatched.name;
     nailPolishNameLabel.hidden = NO;
     
+    //add the polish color to the view
+    UIColor *polishColor = [UIColor colorWithRed:polishMatched.red/255.0 green:polishMatched.green/255.0 blue:polishMatched.blue/255.0 alpha:1];
+    viewForClosestPolishColor.backgroundColor = polishColor;
 }
 
 - (IBAction)compareTwoBtn:(UIButton *)sender
@@ -398,14 +409,19 @@
     UIColor *color = viewToPutManipulatedColorIn.backgroundColor;
     
     //run the comparison
-    NLNailPolish *polishMatched = [self compareColor:color];
-    
-    //now return the closest match colors to the screen.
+    polishMatched = [self compareColor:color];
     
     //unhide label and name it
     nailPolishNameLabel.text = polishMatched.name;
     nailPolishNameLabel.hidden = NO;
+    
+    //add the polish color to the view
+    UIColor *polishColor = [UIColor colorWithRed:polishMatched.red/255.0 green:polishMatched.green/255.0 blue:polishMatched.blue/255.0 alpha:1];
+    viewForClosestPolishColor.backgroundColor = polishColor;
 }
+
+#pragma mark Segue stuff
+
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -414,6 +430,13 @@
         manipulateVC = segue.destinationViewController;
         manipulateVC.colorToManipulate = colorToSave;
         manipulateVC.delegate = self;
+    }
+    
+    if ([segue.identifier isEqualToString:@"mainToInfo"])
+    {
+        polishInfoVC = segue.destinationViewController;
+        polishInfoVC.polishName = polishMatched.name;
+        polishInfoVC.polishColor = [UIColor colorWithRed:polishMatched.red/255.0 green:polishMatched.green/255.0 blue:polishMatched.blue/255.0 alpha:1];
     }
 }
 

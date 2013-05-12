@@ -38,6 +38,7 @@
 		D8B1196E17386C7000AB93C7 /* RSSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B1195D17386C7000AB93C7 /* RSSelectionView.m */; };
 		D8B1197017386C8800AB93C7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B1196F17386C8800AB93C7 /* QuartzCore.framework */; };
 		D8B11A4F1738761300AB93C7 /* NLManipulateColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B11A4E1738761300AB93C7 /* NLManipulateColorViewController.m */; };
+		D8D30D971740401C00C1460F /* NLPolishInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D30D961740401C00C1460F /* NLPolishInfoViewController.m */; };
 		D8DF26A2173EEBAD00EC9936 /* NLNailPolish.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DF26A1173EEBAD00EC9936 /* NLNailPolish.m */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,8 @@
 		D8B1196F17386C8800AB93C7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D8B11A4D1738761300AB93C7 /* NLManipulateColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NLManipulateColorViewController.h; path = ../ColorPickerClasses/NLManipulateColorViewController.h; sourceTree = "<group>"; };
 		D8B11A4E1738761300AB93C7 /* NLManipulateColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NLManipulateColorViewController.m; path = ../ColorPickerClasses/NLManipulateColorViewController.m; sourceTree = "<group>"; };
+		D8D30D951740401C00C1460F /* NLPolishInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLPolishInfoViewController.h; sourceTree = "<group>"; };
+		D8D30D961740401C00C1460F /* NLPolishInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLPolishInfoViewController.m; sourceTree = "<group>"; };
 		D8DF26A0173EEBAD00EC9936 /* NLNailPolish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLNailPolish.h; sourceTree = "<group>"; };
 		D8DF26A1173EEBAD00EC9936 /* NLNailPolish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLNailPolish.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -249,6 +252,8 @@
 		D8DF26A3173EEBB800EC9936 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D8D30D951740401C00C1460F /* NLPolishInfoViewController.h */,
+				D8D30D961740401C00C1460F /* NLPolishInfoViewController.m */,
 				D8B11A4D1738761300AB93C7 /* NLManipulateColorViewController.h */,
 				D8B11A4E1738761300AB93C7 /* NLManipulateColorViewController.m */,
 				D8AB61E017330476001FE4F5 /* NLViewController.h */,
@@ -356,6 +361,7 @@
 				D8B1196E17386C7000AB93C7 /* RSSelectionView.m in Sources */,
 				D8B11A4F1738761300AB93C7 /* NLManipulateColorViewController.m in Sources */,
 				D8DF26A2173EEBAD00EC9936 /* NLNailPolish.m in Sources */,
+				D8D30D971740401C00C1460F /* NLPolishInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
