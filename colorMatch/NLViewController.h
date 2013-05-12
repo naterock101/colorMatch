@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NLManipulateColorViewController.h"
+#import "NLNailPolish.h"
 
 @interface NLViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, DestinationViewControllerDelegate>
 {
@@ -20,6 +21,9 @@
 @property (nonatomic, strong) UIColor *colorThatWasManipulated;
 
 - (IBAction)manipulateButton:(UIButton *)sender;
+- (IBAction)compareOneBtn:(UIButton *)sender;
+- (IBAction)compareTwoBtn:(UIButton *)sender;
+
 
 - (void)setupAppearance;
 - (void)takePicture:(id) sender;
