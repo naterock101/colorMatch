@@ -13,7 +13,7 @@
     
 }
 
-- (id)initWithLabValuesL:(int)labl A:(int)laba B:(int)labb andName: (NSString *)name;
+- (id)initWithLabValuesL:(int)labl A:(int)laba B:(int)labb andName: (NSString *)name2;
 
 @property (strong, nonatomic) NSString *company;
 @property (strong, nonatomic) NSString *name;

@@ -325,6 +325,50 @@
     return deltaE;
 }
 
+#pragma mark compare Colors
+- (NLNailPolish *)compareColor:(UIColor*)color
+{
+    //get the lab values
+    labValuesArray = [self convertRGBtoLABwithColor:color];
+    NSNumber *lnumber = [labValuesArray objectAtIndex:0];
+    int lValue = [lnumber intValue];
+    NSNumber *anumber = [labValuesArray objectAtIndex:1];
+    int aValue = [anumber intValue];
+    NSNumber *bnumber = [labValuesArray objectAtIndex:2];
+    int bValue = [bnumber intValue];
+    
+    //make float variable to compare deltas
+    float smallestDelta = 0;
+    
+    //make nailpolish to return
+    NLNailPolish *polishToReturn = [[NLNailPolish alloc]init];
+    
+    for (NLNailPolish *polish in arrayOfPolishes)
+    {
+        //do the comparison using CIE1994 formula
+        float deltaEcomp = [self compareUsingCIE1994WithLab1l:lValue andLab1a:aValue andLab1b:bValue andLab2l:polish.labL andLab2a:polish.labA andLab2b:polish.labB];
+        
+        //find the closest match
+        //if there is no delta yet (first omparison)
+        if (smallestDelta == 0)
+        {
+            smallestDelta = deltaEcomp;
+            polishToReturn = polish;
+        }
+        else
+        {
+            //check if its smaller than the smalest delta, if it is replace it and become the newest smallest delta
+            if (deltaEcomp > smallestDelta)
+            {
+                smallestDelta = deltaEcomp;
+                polishToReturn = polish;
+            }
+        }
+    }
+    return polishToReturn;
+}
+
+
 #pragma mark Button Stuff
 
 - (IBAction)manipulateButton:(UIButton *)sender
@@ -336,48 +380,31 @@
 {
     //get the color that was chosen
     UIColor *color = viewToChangeColor.backgroundColor;
-    //get the lab values
-    labValuesArray = [self convertRGBtoLABwithColor:color];
-    NSNumber *lnumber = [labValuesArray objectAtIndex:0];
-    int lValue = [lnumber intValue];
-    NSNumber *anumber = [labValuesArray objectAtIndex:1];
-    int aValue = [anumber intValue];
-    NSNumber *bnumber = [labValuesArray objectAtIndex:2];
-    int bValue = [bnumber intValue];
     
-    float smallestDelta = 0;
-    NLNailPolish *polishToReturn = [[NLNailPolish alloc]init];
+    //run the comparison
+    NLNailPolish *polishMatched = [self compareColor:color];
     
-    for (NLNailPolish *polish in arrayOfPolishes)
-    {
-        //do the comparison using CIE1994 formula
-        float deltaEcomp = [self compareUsingCIE1994WithLab1l:lValue andLab1a:aValue andLab1b:bValue andLab2l:polish.labL andLab2a:polish.labA andLab2b:polish.labB];
-        
-        //find the closest match
-        if (smallestDelta == 0)
-        {
-            smallestDelta = deltaEcomp;
-            polishToReturn = polish;
-        }
-        else
-        {
-            if (deltaEcomp > smallestDelta)
-            {
-                smallestDelta = deltaEcomp;
-                polishToReturn = polish;
-            }
-        }
-    }
-
     //now return the closest match colors to the screen.
     
     //unhide label and name it
-    nailPolishNameLabel.text = polishToReturn.name;
+    nailPolishNameLabel.text = polishMatched.name;
     nailPolishNameLabel.hidden = NO;
     
 }
 
-- (IBAction)compareTwoBtn:(UIButton *)sender {
+- (IBAction)compareTwoBtn:(UIButton *)sender
+{
+    //get the color that was chosen
+    UIColor *color = viewToPutManipulatedColorIn.backgroundColor;
+    
+    //run the comparison
+    NLNailPolish *polishMatched = [self compareColor:color];
+    
+    //now return the closest match colors to the screen.
+    
+    //unhide label and name it
+    nailPolishNameLabel.text = polishMatched.name;
+    nailPolishNameLabel.hidden = NO;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

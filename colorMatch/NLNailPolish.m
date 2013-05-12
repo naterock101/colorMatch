@@ -11,14 +11,14 @@
 @implementation NLNailPolish
 @synthesize company, name, labA, labB, labL;
 
-- (id)initWithLabValuesL:(int)labl A:(int)laba B:(int)labb andName: (NSString *)name
+- (id)initWithLabValuesL:(int)labl A:(int)laba B:(int)labb andName: (NSString *)name2
 {    
     self = [super init];
     if (self) {
         self.labL = labl;
         self.labA = laba;
         self.labB = labb;
-        self.name = name;
+        self.name = name2;
     }
     return self;
 }
