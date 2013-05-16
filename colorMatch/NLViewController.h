@@ -10,6 +10,7 @@
 #import "NLManipulateColorViewController.h"
 #import "NLNailPolish.h"
 #import "NLPolishInfoViewController.h"
+#import <AWSRuntime/AWSRuntime.h>
 
 @interface NLViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, DestinationViewControllerDelegate>
 {

@@ -7,6 +7,7 @@
 //
 
 #import "NLViewController.h"
+#import "NLcolorTheoryLogic.h"
 #include <math.h> 
 
 @interface NLViewController ()
@@ -141,10 +142,6 @@
     CGPoint point1 = [touch locationInView:self.view];
     //get a color from a pixel
     colorToSave = [self getPixelColorAtLocation:point1];
-
-    //turns out i could use a built in method DERPFACE BE RIGHT HERE
-//    [colorToSave getRed:&red2 green:&green2 blue:&blue2 alpha:nil];
-//    NSLog(@"red is:%f green is:%f blue is %f", (red2*255), (green2*255), (blue2*255));
     
     //set backgorund color of tiny view to pixel color
     viewToChangeColor.backgroundColor = colorToSave;
@@ -152,7 +149,6 @@
     //get HSB
     [colorToSave getHue:&hue saturation:&saturation brightness:&brightness alpha:nil];
     //NSLog(@"hue! %g saturation! %g brightness! %g", hue, saturation, brightness);
-
 }
 
 -(UIColor *) getPixelColorAtLocation: (CGPoint)point
@@ -199,181 +195,6 @@
     return color;
 }
 
-#pragma mark convert color stuff
-
-- (NSMutableArray *) convertRGBtoLABwithColor: (UIColor *)color
-{
-    //make variables to get rgb values
-    CGFloat red3;
-    CGFloat green3;
-    CGFloat blue3;
-    //get rgb of color
-    [color getRed:&red3 green:&green3 blue:&blue3 alpha:nil];
-    
-    float red2 = (float)red3*255;
-    float blue2 = (float)blue3*255;
-    float green2 = (float)green3*255;
-    
-    //first convert RGB to XYZ
-    
-    // same values, from 0 to 1
-    red2 = red2/255;
-    green2 = green2/255;
-    blue2 = blue2/255;
-    
-    // adjusting values
-    if(red2 > 0.04045)
-    {
-        red2 = (red2 + 0.055)/1.055;
-        red2 = pow(red2,2.4);
-    } else {
-        red2 = red2/12.92;
-    }
-    
-    if(green2 > 0.04045)
-    {
-        green2 = (green2 + 0.055)/1.055;
-        green2 = pow(green2,2.4);
-    } else {
-        green2 = green2/12.92;
-    }
-    
-    if(blue2 > 0.04045)
-    {
-        blue2 = (blue2 + 0.055)/1.055;
-        blue2 = pow(blue2,2.4);
-    } else {
-        blue2 = blue2/12.92;
-    }
-    
-    red2 *= 100;
-    green2 *= 100;
-    blue2 *= 100;
-    
-    //make x, y and z variables
-    float x;
-    float y;
-    float z;
-    
-    // applying the matrix to finally have XYZ
-    x = (red2 * 0.4124) + (green2 * 0.3576) + (blue2 * 0.1805);
-    y = (red2 * 0.2126) + (green2 * 0.7152) + (blue2 * 0.0722);
-    z = (red2 * 0.0193) + (green2 * 0.1192) + (blue2 * 0.9505);
-    
-    //then convert XYZ to LAB
-    
-    x = x/95.047;
-    y = y/100;
-    z = z/108.883;
-    
-    // adjusting the values
-    if(x > 0.008856)
-    {
-        x = powf(x,(1.0/3.0));
-    } else {
-        x = ((7.787 * x) + (16/116));
-    }
-    
-    if(y > 0.008856)
-    {
-        y = pow(y,(1.0/3.0));
-    } else {
-        y = ((7.787 * y) + (16/116));
-    }
-    
-    if(z > 0.008856)
-    {
-        z = pow(z,(1.0/3.0));
-    } else {
-        z = ((7.787 * z) + (16/116));
-    }
-    
-    //make L, A and B variables
-    float l;
-    float a;
-    float b;
-    
-    //finally have your l, a, b variables!!!!
-    l = ((116 * y) - 16);
-    a = 500 * (x - y);
-    b = 200 * (y - z);
-    
-    NSNumber *lNumber = [NSNumber numberWithFloat:l];
-    NSNumber *aNumber = [NSNumber numberWithFloat:a];
-    NSNumber *bNumber = [NSNumber numberWithFloat:b];
-    
-    //add them to an array to return.
-    NSMutableArray *labArray = [[NSMutableArray alloc] init];
-    [labArray addObject:lNumber];
-    [labArray addObject:aNumber];
-    [labArray addObject:bNumber];
-    
-    return labArray;
-}
-
-#pragma mark CIE1994 comparison
-
--(float)compareUsingCIE1994WithLab1l:(int)lab1l andLab1a:(int)lab1a andLab1b:(int)lab1b andLab2l:(int)lab2l andLab2a:(int)lab2a andLab2b:(int)lab2b
-{
-    float c1 = sqrt((lab1a*lab1a)+(lab1b*lab1b));
-    float c2 = sqrt((lab2a*lab2a)+(lab2b*lab2b));
-    float deltaC = c1 - c2;
-    float deltaL = lab1l -  lab2l;
-    float deltaA = lab1a -  lab2a;
-    float deltaB = lab1b -  lab2b;
-    float deltaH = sqrt((deltaA*deltaA)+(deltaB*deltaB)-(deltaC*deltaC));
-    //float first = deltaL;
-    float second = deltaC / (1+(0.045*c1));
-    float third = deltaH / (1+(0.015*c1));
-    float deltaE = sqrt((deltaL*deltaL)+(second*second)+(third*third));
-    
-    return deltaE;
-}
-
-#pragma mark compare Colors
-- (NLNailPolish *)compareColor:(UIColor*)color
-{
-    //get the lab values
-    labValuesArray = [self convertRGBtoLABwithColor:color];
-    NSNumber *lnumber = [labValuesArray objectAtIndex:0];
-    int lValue = [lnumber intValue];
-    NSNumber *anumber = [labValuesArray objectAtIndex:1];
-    int aValue = [anumber intValue];
-    NSNumber *bnumber = [labValuesArray objectAtIndex:2];
-    int bValue = [bnumber intValue];
-    
-    //make float variable to compare deltas
-    float smallestDelta = 0;
-    
-    //make nailpolish to return
-    NLNailPolish *polishToReturn = [[NLNailPolish alloc]init];
-    
-    for (NLNailPolish *polish in arrayOfPolishes)
-    {
-        //do the comparison using CIE1994 formula
-        float deltaEcomp = [self compareUsingCIE1994WithLab1l:lValue andLab1a:aValue andLab1b:bValue andLab2l:polish.labL andLab2a:polish.labA andLab2b:polish.labB];
-        
-        //find the closest match
-        //if there is no delta yet (first omparison)
-        if (smallestDelta == 0)
-        {
-            smallestDelta = deltaEcomp;
-            polishToReturn = polish;
-        }
-        else
-        {
-            //check if its smaller than the smalest delta, if it is replace it and become the newest smallest delta
-            if (deltaEcomp > smallestDelta)
-            {
-                smallestDelta = deltaEcomp;
-                polishToReturn = polish;
-            }
-        }
-    }
-    return polishToReturn;
-}
-
-
 #pragma mark Button Stuff
 
 - (IBAction)manipulateButton:(UIButton *)sender
@@ -383,7 +204,46 @@
 
 - (IBAction)polishInfoBtn:(id)sender
 {
+  /*  //
+    //holla at amazon!
+    //
     
+    //keys and stuff
+    NSString *awsAccessKeyID = @"AKIAJKPDNUQBFQ4VY3QA";
+    NSString *awSecretAccessKey = @"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";
+    NSString *associateTagID = @"ban04d2-20";
+    
+    //make keyword to search
+    NSString *searchString = [NSString stringWithFormat:@"%@ nail polish", polishMatched.name];
+    NSString *searchItem = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    
+    //make things for unsigned api string (timestamp)
+    NSTimeZone *zone = [NSTimeZone defaultTimeZone];                //get the current application default time zone
+    NSInteger interval = [zone secondsFromGMTForDate:[NSDate date]];//sec Returns the time difference of the current application with the world standard time (Green Venice time)
+    NSDate *nowDate = [NSDate dateWithTimeIntervalSinceNow:interval]; //gets the current date
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init]; //sets up a formatter
+    [formatter setTimeZone:[NSTimeZone systemTimeZone]];// get current date/time
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    // display in 12HR/24HR (i.e. 11:25PM or 23:25) format according to User Settings
+    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    NSString *currentTime = [dateFormatter stringFromDate:nowDate];
+    NSString *encodedTime = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef) currentTime,NULL, CFSTR("!*'();:@&=+$,/?%#[]"),kCFStringEncodingUTF8));
+    
+    //Make unsigned api string
+    NSString* unsignedString = [NSString stringWithFormat:@"GET\nwebservices.amazon.com\n/onca/xml\nAWSAccessKeyId=%@&AssociateTag=%@&Keywords=%@&Condition=All&7&Operation=ItemLookup&ResponseGroup=Images%%2CItemAttributes%%2COffers&Service=AWSECommerceService&Timestamp=%@&Version=2011-08-01", awsAccessKeyID, associateTagID, searchItem, encodedTime];
+
+    //make into nsdata
+    NSData *dataToSign = [unsignedString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *signatureString = [AmazonAuthUtils HMACSign:dataToSign withKey:awSecretAccessKey usingAlgorithm:kCCHmacAlgSHA256];
+    NSLog(@"signature is:%@", signatureString);
+    
+    NSString *apiString = [NSString stringWithFormat:@"http://ecs.amazonaws.com/onca/xml?AWSAccessKeyId=%@&AssociateTag=%@&Keywords=%@&Operation=ItemLookup&SearchIndex=All&Service=AWSECommerceService&Timestamp=%@&Version=2011-08-01&Signature=%@", awsAccessKeyID, associateTagID, searchItem, encodedTime, signatureString];
+        NSLog(@"api is: %@", apiString);
+  //  NSString *stringApiTest = [CFURLCreateStringByAddingPercentEscapes(<#CFAllocatorRef allocator#>, <#CFStringRef originalString#>, <#CFStringRef charactersToLeaveUnescaped#>, <#CFStringRef legalURLCharactersToBeEscaped#>, <#CFStringEncoding encoding#>)]
+*/    
+
 }
 
 - (IBAction)compareOneBtn:(UIButton *)sender
@@ -392,7 +252,7 @@
     UIColor *color = viewToChangeColor.backgroundColor;
     
     //run the comparison
-    polishMatched = [self compareColor:color];
+    polishMatched = [NLcolorTheoryLogic compareColor:color toDatabase:arrayOfPolishes];
     
     //unhide label and name it
     nailPolishNameLabel.text = polishMatched.name;
@@ -409,7 +269,7 @@
     UIColor *color = viewToPutManipulatedColorIn.backgroundColor;
     
     //run the comparison
-    polishMatched = [self compareColor:color];
+    polishMatched = [NLcolorTheoryLogic compareColor:color toDatabase:arrayOfPolishes];
     
     //unhide label and name it
     nailPolishNameLabel.text = polishMatched.name;

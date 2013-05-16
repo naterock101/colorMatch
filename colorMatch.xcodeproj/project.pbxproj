@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8162F9D17456B360059D805 /* NLcolorTheoryLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = D8162F9C17456B360059D805 /* NLcolorTheoryLogic.m */; };
 		D8AB61C617330476001FE4F5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AB61C517330476001FE4F5 /* UIKit.framework */; };
 		D8AB61C817330476001FE4F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AB61C717330476001FE4F5 /* Foundation.framework */; };
 		D8AB61CA17330476001FE4F5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AB61C917330476001FE4F5 /* CoreGraphics.framework */; };
@@ -39,10 +40,13 @@
 		D8B1197017386C8800AB93C7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B1196F17386C8800AB93C7 /* QuartzCore.framework */; };
 		D8B11A4F1738761300AB93C7 /* NLManipulateColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B11A4E1738761300AB93C7 /* NLManipulateColorViewController.m */; };
 		D8D30D971740401C00C1460F /* NLPolishInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D30D961740401C00C1460F /* NLPolishInfoViewController.m */; };
+		D8D30D9C174179C500C1460F /* AWSRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D30D9B174179C500C1460F /* AWSRuntime.framework */; };
 		D8DF26A2173EEBAD00EC9936 /* NLNailPolish.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DF26A1173EEBAD00EC9936 /* NLNailPolish.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8162F9B17456B360059D805 /* NLcolorTheoryLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLcolorTheoryLogic.h; sourceTree = "<group>"; };
+		D8162F9C17456B360059D805 /* NLcolorTheoryLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLcolorTheoryLogic.m; sourceTree = "<group>"; };
 		D8AB61C217330476001FE4F5 /* colorMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = colorMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AB61C517330476001FE4F5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D8AB61C717330476001FE4F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -99,6 +103,7 @@
 		D8B11A4E1738761300AB93C7 /* NLManipulateColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NLManipulateColorViewController.m; path = ../ColorPickerClasses/NLManipulateColorViewController.m; sourceTree = "<group>"; };
 		D8D30D951740401C00C1460F /* NLPolishInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLPolishInfoViewController.h; sourceTree = "<group>"; };
 		D8D30D961740401C00C1460F /* NLPolishInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLPolishInfoViewController.m; sourceTree = "<group>"; };
+		D8D30D9B174179C500C1460F /* AWSRuntime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSRuntime.framework; sourceTree = "<group>"; };
 		D8DF26A0173EEBAD00EC9936 /* NLNailPolish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLNailPolish.h; sourceTree = "<group>"; };
 		D8DF26A1173EEBAD00EC9936 /* NLNailPolish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLNailPolish.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +117,7 @@
 				D8AB61C617330476001FE4F5 /* UIKit.framework in Frameworks */,
 				D8AB61C817330476001FE4F5 /* Foundation.framework in Frameworks */,
 				D8AB61CA17330476001FE4F5 /* CoreGraphics.framework in Frameworks */,
+				D8D30D9C174179C500C1460F /* AWSRuntime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +144,7 @@
 		D8AB61C417330476001FE4F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8D30D9B174179C500C1460F /* AWSRuntime.framework */,
 				D8B1196F17386C8800AB93C7 /* QuartzCore.framework */,
 				D8AB61C517330476001FE4F5 /* UIKit.framework */,
 				D8AB61C717330476001FE4F5 /* Foundation.framework */,
@@ -151,6 +158,8 @@
 			children = (
 				D8AB61D417330476001FE4F5 /* NLAppDelegate.h */,
 				D8AB61D517330476001FE4F5 /* NLAppDelegate.m */,
+				D8162F9B17456B360059D805 /* NLcolorTheoryLogic.h */,
+				D8162F9C17456B360059D805 /* NLcolorTheoryLogic.m */,
 				D8AB61DD17330476001FE4F5 /* MainStoryboard.storyboard */,
 				D8DF26A4173EEBC300EC9936 /* Models */,
 				D8DF26A3173EEBB800EC9936 /* View Controller */,
@@ -362,6 +371,7 @@
 				D8B11A4F1738761300AB93C7 /* NLManipulateColorViewController.m in Sources */,
 				D8DF26A2173EEBAD00EC9936 /* NLNailPolish.m in Sources */,
 				D8D30D971740401C00C1460F /* NLPolishInfoViewController.m in Sources */,
+				D8162F9D17456B360059D805 /* NLcolorTheoryLogic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +456,10 @@
 		D8AB61E617330476001FE4F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "colorMatch/colorMatch-Prefix.pch";
 				INFOPLIST_FILE = "colorMatch/colorMatch-Info.plist";
@@ -457,6 +471,10 @@
 		D8AB61E717330476001FE4F5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "colorMatch/colorMatch-Prefix.pch";
 				INFOPLIST_FILE = "colorMatch/colorMatch-Info.plist";
