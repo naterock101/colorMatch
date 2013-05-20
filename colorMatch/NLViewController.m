@@ -7,8 +7,8 @@
 //
 
 #import "NLViewController.h"
-#import "NLcolorTheoryLogic.h"
-#include <math.h> 
+#include <math.h>
+
 
 @interface NLViewController ()
 {
@@ -40,7 +40,7 @@
 @end
 
 @implementation NLViewController
-@synthesize colorThatWasManipulated;
+@synthesize colorThatWasManipulated, fetchedResultsController, managedObjectContext;
 
 #pragma mark -
 #pragma mark Initial methods
@@ -57,16 +57,21 @@
     arrayOfPolishes = [[NSMutableArray alloc]init];
     
     //get some dummy polishes to test.
-    NLNailPolish *meetMeAtSunset =[[NLNailPolish alloc]initWithLabValuesL:53 A:67 B:65 andName:@"Meet Me At Sunset" andRed:240 andGreen:54 andBlue:39];
+    NLNailPolish *meetMeAtSunset =[[NLNailPolish alloc]initWithLabValuesL:58.62 A:51.73 B:59.63 andName:@"Meet Me At Sunset" andRed:224 andGreen:74 andBlue:27];
     [arrayOfPolishes addObject:meetMeAtSunset];
-    NLNailPolish *shesPampered =[[NLNailPolish alloc]initWithLabValuesL:43 A:65 B:36 andName:@"She's Pampered" andRed:202 andGreen:10 andBlue:50];
+    NLNailPolish *shesPampered =[[NLNailPolish alloc]initWithLabValuesL:43 A:65 B:36 andName:@"She Pampered" andRed:202 andGreen:10 andBlue:50];
     [arrayOfPolishes addObject:shesPampered];
-    NLNailPolish *garnet =[[NLNailPolish alloc]initWithLabValuesL:44 A:64 B:43 andName:@"Garnet" andRed:205 andGreen:47 andBlue:43];
-    [arrayOfPolishes addObject:garnet];
-    NLNailPolish *bungleJungle =[[NLNailPolish alloc]initWithLabValuesL:46 A:66 B:69 andName:@"Bungle Jungle" andRed:217 andGreen:27 andBlue:2];
-    [arrayOfPolishes addObject:bungleJungle];
-    NLNailPolish *jellyApple =[[NLNailPolish alloc]initWithLabValuesL:52 A:73 B:64 andName:@"Jelly Apple" andRed:244 andGreen:30 andBlue:27];
-    [arrayOfPolishes addObject:jellyApple];
+    NLNailPolish *clambake =[[NLNailPolish alloc]initWithLabValuesL:56.71 A:64.08 B:58.46 andName:@"Clambake" andRed:235 andGreen:50 andBlue:28];
+    [arrayOfPolishes addObject:clambake];
+    NLNailPolish *fearOfDesire =[[NLNailPolish alloc]initWithLabValuesL:68.12 A:36.02 B:58.95 andName:@"Fear Of Desire" andRed:235 andGreen:118 andBlue:44];
+    [arrayOfPolishes addObject:fearOfDesire];
+    NLNailPolish *djPlayThatSong =[[NLNailPolish alloc]initWithLabValuesL:52.10 A:49.32 B:-47.18 andName:@"DJ Play That Song" andRed:154 andGreen:89 andBlue:202];
+    [arrayOfPolishes addObject:djPlayThatSong];
+    NLNailPolish *bigSpender = [[NLNailPolish alloc]initWithLabValuesL:47 A:60.32 B:-5.93 andName:@"Big Spender" andRed:168 andGreen:57 andBlue:121];
+    [arrayOfPolishes addObject:bigSpender];
+    NLNailPolish *avenueMaintain = [[NLNailPolish alloc]initWithLabValuesL:66.58 A:-16.53 B:-42.15 andName:@"Avenue Maintain" andRed:108 andGreen:171 andBlue:234];
+    [arrayOfPolishes addObject:avenueMaintain];
+    
     
     //hide label
     nailPolishNameLabel.hidden = YES;
@@ -204,6 +209,18 @@
 
 - (IBAction)polishInfoBtn:(id)sender
 {
+    //linkshare MERCHANDISE QUERY API
+    //use this to find the information needed for the linkgenerator
+    NSString *linkshareWebServicesToken = @"2624192b711c97206acbb22d18d91e6be4de91da0e89d1e876a9ab57bd958458";
+    NSString *keyword = [NSString stringWithFormat:@"%@", polishMatched.name];
+    NSString *category = @"Nail Polish";
+    //3002 correlates to beauty.com
+    NSString *merchant = @"3002";
+    
+   NSString *merchQueryAPIString= [NSString stringWithFormat:@"http://productsearch.linksynergy.com/productsearch?token=%@&keyword=\"%@\"&cat=\"%@\"&MaxResults=1&pagenumber=1&mid=%@&sort=retailprice&sorttype=asc&sort=productname&sorttype=asc", linkshareWebServicesToken, keyword, category, merchant];
+    NSLog(@"%@", merchQueryAPIString);
+    
+    
   /*  //
     //holla at amazon!
     //

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D8162F9D17456B360059D805 /* NLcolorTheoryLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = D8162F9C17456B360059D805 /* NLcolorTheoryLogic.m */; };
+		D8162FBE174572190059D805 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8162FBD174572190059D805 /* CoreData.framework */; };
+		D8162FC11745726A0059D805 /* colorMatch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8162FBF1745726A0059D805 /* colorMatch.xcdatamodeld */; };
+		D8162FC5174587B50059D805 /* NailPolishInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8162FC4174587B40059D805 /* NailPolishInfo.m */; };
 		D8AB61C617330476001FE4F5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AB61C517330476001FE4F5 /* UIKit.framework */; };
 		D8AB61C817330476001FE4F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AB61C717330476001FE4F5 /* Foundation.framework */; };
 		D8AB61CA17330476001FE4F5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AB61C917330476001FE4F5 /* CoreGraphics.framework */; };
@@ -47,6 +50,10 @@
 /* Begin PBXFileReference section */
 		D8162F9B17456B360059D805 /* NLcolorTheoryLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLcolorTheoryLogic.h; sourceTree = "<group>"; };
 		D8162F9C17456B360059D805 /* NLcolorTheoryLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLcolorTheoryLogic.m; sourceTree = "<group>"; };
+		D8162FBD174572190059D805 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D8162FC01745726A0059D805 /* colorMatch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = colorMatch.xcdatamodel; sourceTree = "<group>"; };
+		D8162FC3174587B40059D805 /* NailPolishInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NailPolishInfo.h; path = ../NailPolishInfo.h; sourceTree = "<group>"; };
+		D8162FC4174587B40059D805 /* NailPolishInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NailPolishInfo.m; path = ../NailPolishInfo.m; sourceTree = "<group>"; };
 		D8AB61C217330476001FE4F5 /* colorMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = colorMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AB61C517330476001FE4F5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D8AB61C717330476001FE4F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8162FBE174572190059D805 /* CoreData.framework in Frameworks */,
 				D8B1197017386C8800AB93C7 /* QuartzCore.framework in Frameworks */,
 				D8AB61C617330476001FE4F5 /* UIKit.framework in Frameworks */,
 				D8AB61C817330476001FE4F5 /* Foundation.framework in Frameworks */,
@@ -124,9 +132,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8162FC2174572CA0059D805 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		D8AB61B917330476001FE4F5 = {
 			isa = PBXGroup;
 			children = (
+				D8162FC2174572CA0059D805 /* CoreData */,
+				D8162FBF1745726A0059D805 /* colorMatch.xcdatamodeld */,
 				D8AB61CB17330476001FE4F5 /* colorMatch */,
 				D8AB61C417330476001FE4F5 /* Frameworks */,
 				D8AB61C317330476001FE4F5 /* Products */,
@@ -144,6 +161,7 @@
 		D8AB61C417330476001FE4F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8162FBD174572190059D805 /* CoreData.framework */,
 				D8D30D9B174179C500C1460F /* AWSRuntime.framework */,
 				D8B1196F17386C8800AB93C7 /* QuartzCore.framework */,
 				D8AB61C517330476001FE4F5 /* UIKit.framework */,
@@ -276,6 +294,8 @@
 			children = (
 				D8DF26A0173EEBAD00EC9936 /* NLNailPolish.h */,
 				D8DF26A1173EEBAD00EC9936 /* NLNailPolish.m */,
+				D8162FC3174587B40059D805 /* NailPolishInfo.h */,
+				D8162FC4174587B40059D805 /* NailPolishInfo.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -372,6 +392,8 @@
 				D8DF26A2173EEBAD00EC9936 /* NLNailPolish.m in Sources */,
 				D8D30D971740401C00C1460F /* NLPolishInfoViewController.m in Sources */,
 				D8162F9D17456B360059D805 /* NLcolorTheoryLogic.m in Sources */,
+				D8162FC11745726A0059D805 /* colorMatch.xcdatamodeld in Sources */,
+				D8162FC5174587B50059D805 /* NailPolishInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +527,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D8162FBF1745726A0059D805 /* colorMatch.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D8162FC01745726A0059D805 /* colorMatch.xcdatamodel */,
+			);
+			currentVersion = D8162FC01745726A0059D805 /* colorMatch.xcdatamodel */;
+			path = colorMatch.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D8AB61BA17330476001FE4F5 /* Project object */;
 }

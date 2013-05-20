@@ -16,7 +16,7 @@
 }
 
 + (NSMutableArray *) convertRGBtoLABwithColor: (UIColor *)color;
-+ (float)compareUsingCIE1994WithLab1l:(int)lab1l andLab1a:(int)lab1a andLab1b:(int)lab1b andLab2l:(int)lab2l andLab2a:(int)lab2a andLab2b:(int)lab2b;
++ (float)compareUsingCIE1994WithLab1l:(float)lab1l andLab1a:(float)lab1a andLab1b:(float)lab1b andLab2l:(float)lab2l andLab2a:(float)lab2a andLab2b:(float)lab2b;
 + (NLNailPolish *)compareColor:(UIColor*)color toDatabase: (NSArray *) colorArray;
 
 

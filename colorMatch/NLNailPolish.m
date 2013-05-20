@@ -11,7 +11,7 @@
 @implementation NLNailPolish
 @synthesize company, name, labA, labB, labL, red, green, blue;
 
-- (id)initWithLabValuesL:(int)labl A:(int)laba B:(int)labb andName: (NSString *)name2 andRed: (int)red2 andGreen: (int)green2 andBlue: (int)blue2
+- (id)initWithLabValuesL:(float)labl A:(float)laba B:(float)labb andName: (NSString *)name2 andRed: (int)red2 andGreen: (int)green2 andBlue: (int)blue2
 {    
     self = [super init];
     if (self) {

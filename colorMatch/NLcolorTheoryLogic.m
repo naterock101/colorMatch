@@ -125,7 +125,7 @@
 
 #pragma mark CIE1994 comparison
 
-+ (float)compareUsingCIE1994WithLab1l:(int)lab1l andLab1a:(int)lab1a andLab1b:(int)lab1b andLab2l:(int)lab2l andLab2a:(int)lab2a andLab2b:(int)lab2b
++ (float)compareUsingCIE1994WithLab1l:(float)lab1l andLab1a:(float)lab1a andLab1b:(float)lab1b andLab2l:(float)lab2l andLab2a:(float)lab2a andLab2b:(float)lab2b
 {
     float c1 = sqrt((lab1a*lab1a)+(lab1b*lab1b));
     float c2 = sqrt((lab2a*lab2a)+(lab2b*lab2b));
@@ -148,11 +148,12 @@
     //get the lab values
     NSMutableArray *labValuesArray = [self convertRGBtoLABwithColor:color];
     NSNumber *lnumber = [labValuesArray objectAtIndex:0];
-    int lValue = [lnumber intValue];
+    float lValue = [lnumber floatValue];
     NSNumber *anumber = [labValuesArray objectAtIndex:1];
-    int aValue = [anumber intValue];
+    float aValue = [anumber floatValue];
     NSNumber *bnumber = [labValuesArray objectAtIndex:2];
-    int bValue = [bnumber intValue];
+    float bValue = [bnumber floatValue];
+    //NSLog(@"%f %f %f", lValue, aValue, bValue);
     
     //make float variable to compare deltas
     float smallestDelta = 0;
@@ -175,7 +176,7 @@
         else
         {
             //check if its smaller than the smalest delta, if it is replace it and become the newest smallest delta
-            if (deltaEcomp > smallestDelta)
+            if (deltaEcomp < smallestDelta)
             {
                 smallestDelta = deltaEcomp;
                 polishToReturn = polish;

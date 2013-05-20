@@ -11,8 +11,11 @@
 #import "NLNailPolish.h"
 #import "NLPolishInfoViewController.h"
 #import <AWSRuntime/AWSRuntime.h>
+#import <CoreData/CoreData.h>
+#import "NLcolorTheoryLogic.h"
+#import "NailPolishInfo.h"
 
-@interface NLViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, DestinationViewControllerDelegate>
+@interface NLViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, DestinationViewControllerDelegate, NSFetchedResultsControllerDelegate>
 {
     __weak IBOutlet UILabel *nailPolishNameLabel;
     __weak IBOutlet UIImageView *imageViewForPic;    
@@ -21,6 +24,9 @@
     __weak IBOutlet UIView *viewToChangeColor;
     __weak IBOutlet UIView *viewForClosestPolishColor;
 }
+
+@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, strong) UIColor *colorThatWasManipulated;
 
